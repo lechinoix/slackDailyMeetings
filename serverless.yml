@@ -1,0 +1,32 @@
+service: dailymeetings
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
+  pythonRequirements:
+    dockerizePip: non-linux
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-3
+  runtime: python3.6
+  environment:
+    SLACK_TOKEN: ${env:SLACK_TOKEN}
+
+plugins:
+  - serverless-python-requirements
+
+functions:
+  send_commando_daily_message:
+    handler: handler.send_daily_message
+    environemnt:
+      TEAM_CHANNEL_NAME: commando
+    events:
+      - schedule: cron(15 7 ? * 2-6 *)
+  send_hypercube_daily_message:
+    handler: handler.send_daily_message
+    environemnt:
+      TEAM_CHANNEL_NAME: hypercube
+    events:
+      - schedule: cron(15 7 ? * 2-6 *)
