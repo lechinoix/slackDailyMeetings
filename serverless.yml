@@ -27,6 +27,6 @@ functions:
   send_hypercube_daily_message:
     handler: handler.send_daily_message
     environment:
-      TEAM_CHANNEL_NAME: hypercube
+      TEAM_CHANNEL_NAME: hypercube-team
     events:
       - schedule: cron(15 7 ? * 2-6 *)
