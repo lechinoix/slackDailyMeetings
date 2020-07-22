@@ -20,13 +20,13 @@ plugins:
 functions:
   send_commando_daily_message:
     handler: handler.send_daily_message
-    environemnt:
+    environment:
       TEAM_CHANNEL_NAME: commando
     events:
       - schedule: cron(15 7 ? * 2-6 *)
   send_hypercube_daily_message:
     handler: handler.send_daily_message
-    environemnt:
+    environment:
       TEAM_CHANNEL_NAME: hypercube
     events:
       - schedule: cron(15 7 ? * 2-6 *)
