@@ -24,6 +24,12 @@ functions:
       TEAM_CHANNEL_NAME: commando
     events:
       - schedule: cron(15 7 ? * 2-6 *)
+  send_hypercube_daily_mail_message:
+    handler: handler.send_daily_mail_message
+    environment:
+      TEAM_CHANNEL_NAME: hypercube-team
+    events:
+      - schedule: cron(35 7 ? * 2-6 *)
   send_hypercube_daily_message:
     handler: handler.send_daily_message
     environment:
