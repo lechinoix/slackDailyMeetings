@@ -1,5 +1,6 @@
 import json
 import requests
+import random
 import os
 
 
@@ -33,13 +34,20 @@ On se retrouve à 9h30 :)
     return send_message(daily_message)
 
 def send_daily_mail_message(event, context):
-    daily_mail_message = """@here Et pour aider le rédacteur du daily mail, remplissez la google sheet suivante : https://docs.google.com/spreadsheets/d/1ffVvOTIw2fPID_4lRDyOa2v0q_TnuOkWZGU4F2LjHoQ/edit#gid=0
+    daily_mail_writers = ["Nicolas", "Axel", "Paul", "Romain", "Clément", "Brendan", "Jean", "Arnaud"]
 
-Bonne journée !
-    """
+    daily_mail_message = """@here Bonjour à tous, c'est bientôt l'heure du daily !
+
+Pour aider le rédacteur du daily mail, remplissez la google sheet suivante : https://docs.google.com/spreadsheets/d/1ffVvOTIw2fPID_4lRDyOa2v0q_TnuOkWZGU4F2LjHoQ/edit#gid=0
+
+Puis mettez un emoji :thumbsup: sur le message qu'on sache que vous l'avez fait.
+
+Et aujourd'hui le gagnant de la loterie du daily mail est...... {} !
+
+Félicitations à lui, on se retrouve à 9h30 :)
+    """.format(random.choice(daily_mail_writers))
 
     return send_message(daily_mail_message)
-
 
 def get_channel_id():
     return next(
